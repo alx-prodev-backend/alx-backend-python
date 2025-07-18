@@ -1,6 +1,9 @@
 #!/usr/bin/env python3
 """
-Unit tests for utils module functions
+Unit tests for utils module functions:
+- access_nested_map
+- get_json
+- memoize
 """
 
 import unittest
@@ -43,16 +46,23 @@ class TestGetJson(unittest.TestCase):
 
 
 class TestMemoize(unittest.TestCase):
-    """Test memoization behavior of the memoize decorator"""
+    """Test memoize decorator functionality"""
 
     def test_memoize(self):
-        """Test that memoized result caches and only calls original method once"""
+        """
+        Test that memoize caches the result after the first method call.
+        a_method should only be called once even if a_property is accessed twice.
+        """
         class TestClass:
+            """A sample class to test memoization"""
+
             def a_method(self):
+                """Simulate an expensive call"""
                 return 42
 
             @memoize
             def a_property(self):
+                """Memoized method that delegates to a_method"""
                 return self.a_method()
 
         with patch.object(TestClass, 'a_method', return_value=42) as mock_method:
