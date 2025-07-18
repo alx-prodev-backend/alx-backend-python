@@ -6,7 +6,7 @@ Unit tests for utils module functions
 import unittest
 from unittest.mock import patch, Mock
 from parameterized import parameterized
-from utils import access_nested_map, get_json
+from utils import access_nested_map, get_json, memoize
 
 
 class TestAccessNestedMap(unittest.TestCase):
@@ -40,6 +40,7 @@ class TestGetJson(unittest.TestCase):
 
             mock_get.assert_called_once_with(test_url)
             self.assertEqual(result, test_payload)
+
 
 class TestMemoize(unittest.TestCase):
     """Test memoization behavior of the memoize decorator"""
