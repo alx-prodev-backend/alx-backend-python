@@ -1,11 +1,11 @@
 #!/usr/bin/env python3
 """
-Unit tests for utils.access_nested_map
+Unit tests for utils module functions
 """
 
 import unittest
+from unittest.mock import patch, Mock
 from parameterized import parameterized
-from utils import access_nested_map
 from utils import access_nested_map, get_json
 
 
@@ -21,8 +21,9 @@ class TestAccessNestedMap(unittest.TestCase):
         """Test that access_nested_map returns expected results"""
         self.assertEqual(access_nested_map(nested_map, path), expected)
 
+
 class TestGetJson(unittest.TestCase):
-    """Test get_json function with mocked HTTP calls"""
+    """Test get_json function with mocked HTTP requests"""
 
     @parameterized.expand([
         ("http://example.com", {"payload": True}),
