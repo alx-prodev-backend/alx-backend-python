@@ -33,7 +33,10 @@ class TestGetJson(unittest.TestCase):
         ("http://holberton.io", {"payload": False}),
     ])
     def test_get_json(self, test_url, test_payload):
-        """Test that get_json returns expected payload and calls requests.get"""
+        """
+        Test that get_json returns expected payload
+        and requests.get is called once with the URL
+        """
         with patch('utils.requests.get') as mock_get:
             mock_response = Mock()
             mock_response.json.return_value = test_payload
@@ -54,15 +57,15 @@ class TestMemoize(unittest.TestCase):
         a_method should only be called once even if a_property is accessed twice.
         """
         class TestClass:
-            """A sample class to test memoization"""
+            """Sample class with memoized method"""
 
             def a_method(self):
-                """Simulate an expensive call"""
+                """Simulate an expensive operation"""
                 return 42
 
             @memoize
             def a_property(self):
-                """Memoized method that delegates to a_method"""
+                """Memoized property method"""
                 return self.a_method()
 
         with patch.object(TestClass, 'a_method', return_value=42) as mock_method:
