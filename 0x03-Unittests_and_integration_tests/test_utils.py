@@ -7,10 +7,14 @@ from utils import memoize
 
 
 class TestMemoize(unittest.TestCase):
-    """Test the behavior of the memoize decorator to ensure it caches correctly."""
+    """Test the behavior of the
+    memoize decorator
+     to ensure it caches
+     correctly."""
 
     def test_memoize(self):
-        """Test that memoize caches the result after the first method call."""
+        """Test that memoize caches the
+         result after the first method call."""
 
         class TestClass:
             def a_method(self):
