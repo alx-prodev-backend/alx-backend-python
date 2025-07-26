@@ -14,7 +14,7 @@ from fixtures import TEST_PAYLOAD
 @parameterized_class([
     {"org_payload": TEST_PAYLOAD[0],
      "repos_payload": TEST_PAYLOAD[1],
-     "expected_repos": ["repo1", "repo2"],
+     "expected_repos": ["repo1", "repo2", "repo3"],
      "apache2_repos": ["repo2"]}
 ])
 class TestIntegrationGithubOrgClient(unittest.TestCase):

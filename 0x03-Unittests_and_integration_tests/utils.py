@@ -73,3 +73,14 @@ def memoize(fn: Callable) -> Callable:
         return getattr(self, attr_name)
 
     return property(memoized)
+
+
+# utils.py
+
+import requests
+
+
+def get_json(url):
+    """Fetch JSON content from a URL"""
+    response = requests.get(url)
+    return response.json()
