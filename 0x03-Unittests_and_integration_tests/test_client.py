@@ -1,8 +1,11 @@
 #!/usr/bin/env python3
+import sys
+import os
+sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 import unittest
 from unittest.mock import patch
 from parameterized import parameterized_class
-from client import GithubOrgClient
+from clients import GithubOrgClient
 from fixtures import TEST_PAYLOAD
 
 
@@ -16,16 +19,14 @@ class TestIntegrationGithubOrgClient(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
         """Start patchers"""
-        cls.get_patcher = patch("client.requests.get")
+        cls.get_patcher = patch("utils.get_json")
         cls.mock_get = cls.get_patcher.start()
 
-        # Mock for repos_url in the org payload
+        # Mock return values for two sequential calls to get_json
         mock_org = cls.org_payload
-        mock_repos_url = mock_org.get("repos_url")
-        cls.mock_get.side_effect = [
-            unittest.mock.Mock(json=lambda: mock_org),
-            unittest.mock.Mock(json=lambda: cls.repos_payload),
-        ]
+        mock_repos = cls.repos_payload
+        cls.mock_get.side_effect = [mock_org, mock_repos]
+
         cls.client = GithubOrgClient("testorg")
 
     @classmethod
