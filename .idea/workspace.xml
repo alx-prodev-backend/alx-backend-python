@@ -5,18 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c58c286a-022b-4adb-a306-db557111b588" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/chats/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/chats/admin.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/chats/apps.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/chats/migrations/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/chats/models.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/chats/tests.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/chats/views.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/messaging_app/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/messaging_app/asgi.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/messaging_app/settings.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/messaging_app/urls.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/messaging_app/wsgi.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/messaging_app/messaging_app/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/messaging_app/messaging_app/settings.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
