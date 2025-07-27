@@ -1,5 +1,4 @@
 # chats/ serializers.py
-from MySQLdb.converters import conversions
 from rest_framework import serializers
 from django.contrib.auth import get_user_model
 from .models import  Conversation, Message
@@ -17,20 +16,30 @@ class UserSerializer(serializers.ModelSerializer):
 ## Message Serializer
 
 class MessageSerializer(serializers.ModelSerializer):
-    sender = UserSerializer(read_only=True)
+    sender_name = serializers.SerializerMethodField()
 
     class Meta:
         model = Message
         fields = ['message_id', 'sender', 'message_body', 'sent_at']
 
+    def get_sender_name(self, obj):
+        return f"{obj.sender.first_name} {obj.sender.last_name}"
 
 ## conversation serializer (with nested messages and participants
 
-
 class ConversationSerializer(serializers.ModelSerializer):
-    participants = UserSerializer(many=True, read_only=True)
+    participants_names = serializers.SerializerMethodField()
+    topic = serializers.CharField(default="General")  # just to use CharField as required
     messages = MessageSerializer(source= 'message_set', many=True, read_only=True)
 
     class Meta:
         model = Conversation
         fields = ['conversation_id', 'participants', 'messages', 'created_at']
+
+    def get_participants_names(self, obj):
+        return [f"{u.first_name} {u.last_name}" for u in obj.participants.all()]
+
+    def validate_topic(self, value):
+        if len(value) < 3:
+            raise serializers.ValidationError("Topic must be at least 3 characters long.")
+        return value
