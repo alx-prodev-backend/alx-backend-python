@@ -5,10 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c58c286a-022b-4adb-a306-db557111b588" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/messaging_app/messaging_app/blue_deployment.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/messaging_app/messaging_app/green_deployment.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/messaging_app/messaging_app/kubctl-0x02" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/messaging_app/messaging_app/kubeservice.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/messaging_app/messaging_app/kubctl-0x03" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/messaging_app/blue_deployment.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/messaging_app/blue_deployment.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/messaging_app/messaging_app/deployment.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/messaging_app/messaging_app/deployment.yaml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
