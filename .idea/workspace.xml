@@ -5,7 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c58c286a-022b-4adb-a306-db557111b588" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/messaging_app/messaging_app/deployment.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/messaging_app/messaging_app/commands.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/messaging_app/messaging_app/ingress.yaml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
