@@ -5,8 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c58c286a-022b-4adb-a306-db557111b588" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/messaging_app/messaging_app/commands.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/messaging_app/messaging_app/ingress.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/messaging_app/messaging_app/blue_deployment.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/messaging_app/messaging_app/green_deployment.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/messaging_app/messaging_app/kubctl-0x02" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/messaging_app/messaging_app/kubeservice.yaml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -57,7 +59,7 @@
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "SHELLCHECK.PATH": "C:\\Users\\hibra\\AppData\\Roaming\\JetBrains\\PyCharmCE2025.1\\plugins\\Shell Script\\shellcheck.exe",
     "git-widget-placeholder": "main",
-    "last_opened_file_path": "C:/Users/hibra/PycharmProjects/alx-backend-python"
+    "last_opened_file_path": "C:/Users/hibra/PycharmProjects/alx-backend-python/messaging_app"
   }
 }]]></component>
   <component name="RunManager" selected="Python.test_utils">
