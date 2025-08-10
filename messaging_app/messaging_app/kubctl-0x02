@@ -1,0 +1,62 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+BLUE_DEPLOY="messaging-app-blue"
+GREEN_DEPLOY="messaging-app-green"
+SERVICE="messaging-app-service"
+NAMESPACE="default"
+
+echo "=== 1) Apply blue deployment (current production) and service ==="
+kubectl apply -f blue_deployment.yaml
+kubectl apply -f kubeservice.yaml
+
+echo
+echo "=== Ensure blue rollout is complete ==="
+kubectl rollout status deployment/${BLUE_DEPLOY} --namespace=${NAMESPACE}
+
+echo
+echo "=== 2) Deploy green (new version) ==="
+kubectl apply -f green_deployment.yaml
+
+echo
+echo "=== Wait for green rollout to finish ==="
+kubectl rollout status deployment/${GREEN_DEPLOY} --namespace=${NAMESPACE}
+
+echo
+echo "=== 3) Check green pods and logs for errors ==="
+kubectl get pods -l app=messaging-app,version=green --namespace=${NAMESPACE}
+
+# Get one green pod name to show logs
+GREEN_POD=$(kubectl get pods -l app=messaging-app,version=green -o jsonpath='{.items[0].metadata.name}' --namespace=${NAMESPACE})
+echo "Showing logs for green pod: ${GREEN_POD}"
+kubectl logs "${GREEN_POD}" --namespace=${NAMESPACE} --tail=200
+
+echo
+echo "=== 4) (Optional) Smoke test - you can port-forward or curl via Ingress/Service ==="
+echo "You may run tests now (curl, integration tests...)"
+
+echo
+echo "=== 5) Switch traffic: patch Service selector to version=green ==="
+kubectl patch svc ${SERVICE} -p '{"spec":{"selector":{"app":"messaging-app","version":"green"}}}' --namespace=${NAMESPACE}
+echo "Service ${SERVICE} patched to route to version=green"
+
+echo
+echo "=== 6) Verify Service endpoints and pods receiving traffic ==="
+kubectl get svc ${SERVICE} --namespace=${NAMESPACE}
+echo "Endpoints:"
+kubectl get endpoints ${SERVICE} --namespace=${NAMESPACE} -o yaml
+
+echo
+echo "=== 7) (Optional) Scale down blue or keep it as a fallback ==="
+echo "You can keep blue running as a rollback option. To scale blue down, uncomment the next line:"
+echo "# kubectl scale deployment/${BLUE_DEPLOY} --replicas=0 --namespace=${NAMESPACE}"
+
+echo
+echo "=== Final status ==="
+kubectl get deployments -l app=messaging-app --namespace=${NAMESPACE}
+kubectl get pods -l app=messaging-app --namespace=${NAMESPACE}
+kubectl describe svc ${SERVICE} --namespace=${NAMESPACE}
+
+echo
+echo "Blue–Green switch complete. If any issue appears with green, you can patch the service back to version=blue:"
+echo "kubectl patch svc ${SERVICE} -p '{\"spec\":{\"selector\":{\"app\":\"messaging-app\",\"version\":\"blue\"}}}'"
