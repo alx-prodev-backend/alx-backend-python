@@ -5,9 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c58c286a-022b-4adb-a306-db557111b588" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/messaging_app/messaging_app/kubctl-0x03" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/messaging_app/blue_deployment.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/messaging_app/blue_deployment.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/messaging_app/messaging_app/deployment.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/messaging_app/messaging_app/deployment.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -58,7 +56,7 @@
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "SHELLCHECK.PATH": "C:\\Users\\hibra\\AppData\\Roaming\\JetBrains\\PyCharmCE2025.1\\plugins\\Shell Script\\shellcheck.exe",
     "git-widget-placeholder": "main",
-    "last_opened_file_path": "C:/Users/hibra/PycharmProjects/alx-backend-python/messaging_app"
+    "last_opened_file_path": "C:/Users/hibra/PycharmProjects/alx-backend-python"
   }
 }]]></component>
   <component name="RecentsManager">
