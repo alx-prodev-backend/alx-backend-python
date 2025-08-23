@@ -1,79 +1,28 @@
-name: Django CI
+name: Docker Build and Push
 
 on:
   push:
-    branches: [ "**" ]
-  pull_request:
-    branches: [ "**" ]
+    branches:
+      - main
 
 jobs:
-  test:
+  docker:
     runs-on: ubuntu-latest
-
-    services:
-      mysql:
-        image: mysql:5.7
-        env:
-          MYSQL_ROOT_PASSWORD: root
-          MYSQL_DATABASE: test_db
-          MYSQL_USER: test_user
-          MYSQL_PASSWORD: test_pass
-        ports:
-          - 3306:3306
-        options: >-
-          --health-cmd="mysqladmin ping --silent"
-          --health-interval=10s
-          --health-timeout=5s
-          --health-retries=3
 
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Set up Python
-        uses: actions/setup-python@v4
+      - name: Log in to Docker Hub
+        uses: docker/login-action@v2
         with:
-          python-version: '3.9'
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
 
-      - name: Install dependencies
+      - name: Build Docker image
         run: |
-          python -m pip install --upgrade pip
-          pip3 install -r messaging_app/requirements.txt
-          pip3 install flake8 pytest pytest-cov
+          docker build -t ${{ secrets.DOCKER_USERNAME }}/messaging_app:latest ./messaging_app
 
-      # 🔹 Step 1: Run flake8 linting
-      - name: Run flake8 Lint
+      - name: Push Docker image
         run: |
-          cd messaging_app
-          flake8 .
-
-      # 🔹 Step 2: Run migrations
-      - name: Run migrations
-        env:
-          DB_NAME: test_db
-          DB_USER: test_user
-          DB_PASSWORD: test_pass
-          DB_HOST: 127.0.0.1
-          DB_PORT: 3306
-        run: |
-          cd messaging_app
-          python manage.py migrate
-
-      # 🔹 Step 3: Run tests with coverage
-      - name: Run tests with coverage
-        env:
-          DB_NAME: test_db
-          DB_USER: test_user
-          DB_PASSWORD: test_pass
-          DB_HOST: 127.0.0.1
-          DB_PORT: 3306
-        run: |
-          cd messaging_app
-          pytest --ds=messaging_app.settings --cov=. --cov-report=xml --cov-report=html
-
-      # 🔹 Step 4: Upload coverage reports
-      - name: Upload coverage report
-        uses: actions/upload-artifact@v3
-        with:
-          name: coverage-report
-          path: messaging_app/htmlcov
+          docker push ${{ secrets.DOCKER_USERNAME }}/messaging_app:latest
